@@ -60,4 +60,27 @@ router.post("/movies/:id/delete", (req, res, next) => {
     });
 });
 
+router.get("/movies/:id/edit", (req, res, next) => {
+  const { id } = req.params;
+  MovieModel.findById(id)
+    .then((movie) => {
+      res.render("../views/movies/edit-movie", { movie });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.post("/movies/:id/edit", (req, res, next) => {
+  const { id } = req.params;
+
+  MovieModel.findByIdAndUpdate(id)
+    .then(() => {
+      res.redirect("/movies");
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 module.exports = router;

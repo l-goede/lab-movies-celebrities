@@ -9,8 +9,10 @@ const MovieSchema = new Schema({
   plot: String,
   cast: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "CelebrityModel",
+      id: {
+        type: Schema.Types.ObjectId,
+        ref: "CelebrityModel",
+      },
     },
   ],
 });
